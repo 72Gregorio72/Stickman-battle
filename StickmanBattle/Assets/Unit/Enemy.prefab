@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAttackRange: 0.5
   attacked: 0
-  target: Enemy
-  damage: 20
-  direction: 1
+  target: Unit
+  damage: 30
+  direction: -1
   AttackDistance: 1
 --- !u!1 &6925070347035754092
 GameObject:
@@ -124,7 +124,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.93226576, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.6897316, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -146,10 +146,10 @@ GameObject:
   - component: {fileID: 8261174405487487083}
   - component: {fileID: 6010538869814588507}
   - component: {fileID: 2139400944065318932}
-  - component: {fileID: 7448601247600143537}
+  - component: {fileID: 8292751571987000961}
   m_Layer: 0
-  m_Name: Unit
-  m_TagString: Unit
+  m_Name: Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,8 +187,8 @@ MonoBehaviour:
   speed: 5
   attackSpeed: 2
   attackRange: 1
-  target: Enemy
-  direction: 1
+  target: Unit
+  direction: -1
 --- !u!50 &6010538869814588507
 Rigidbody2D:
   serializedVersion: 4
@@ -261,7 +261,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7448601247600143537
+--- !u!114 &8292751571987000961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

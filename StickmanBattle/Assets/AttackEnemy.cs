@@ -1,28 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackEnemy : MonoBehaviour
 {
     public float startAttackRange;
-    Boolean attacked = false;
+    public Boolean attacked = false;
+
+    public String target;
+    public int damage;
+    public int direction;
+
+    public float AttackDistance;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position + new Vector3(2f, 0, 0), startAttackRange);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position + new Vector3(AttackDistance * direction, 0, 0), startAttackRange);
         
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Enemy") && !attacked)
+            if (hitCollider.CompareTag(target) && !attacked)
             {
                 Debug.Log("Attack");
+                hitCollider.GetComponent<UnitHealth>().TakeDamage(damage);
                 attacked = true;
             }
         }
@@ -31,6 +39,6 @@ public class AttackEnemy : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(2f, 0, 0), startAttackRange);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(AttackDistance * direction, 0, 0), startAttackRange);
     }
 }
