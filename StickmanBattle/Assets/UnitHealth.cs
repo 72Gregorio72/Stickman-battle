@@ -23,7 +23,19 @@ public class UnitHealth : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        Debug.Log("1");
+        StartCoroutine(DelayedDestroy());
+    }
+    private IEnumerator DelayedDestroy()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("2");
+        Destroy(gameObject);
     }
 }

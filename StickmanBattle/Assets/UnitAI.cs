@@ -8,13 +8,15 @@ public class UnitAI : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject attackPrefab;
     public float speed;
-    public int attackSpeed;
-    public int attackRange;
+    public float attackSpeed;
+    public float attackRange;
     private float timer = 0;
 
     public String target;
 
     public int direction;
+    public float offset;
+    public int id;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,7 @@ public class UnitAI : MonoBehaviour
         rb.velocity = new Vector2(speed * direction, 0);
         
         //Range
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position + new Vector3(0, 0, 0), attackRange);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position + new Vector3(offset, 0, 0), attackRange);
 
         timer += Time.deltaTime;
         if(timer >= 0.1){
@@ -54,6 +56,6 @@ public class UnitAI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 0, 0), attackRange);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(offset, 0, 0), attackRange);
     }
 }

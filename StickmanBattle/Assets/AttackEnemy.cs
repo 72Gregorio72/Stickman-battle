@@ -29,7 +29,6 @@ public class AttackEnemy : MonoBehaviour
         {
             if (hitCollider.CompareTag(target) && !attacked)
             {
-                Debug.Log("Attack");
                 hitCollider.GetComponent<UnitHealth>().TakeDamage(damage);
                 attacked = true;
             }
