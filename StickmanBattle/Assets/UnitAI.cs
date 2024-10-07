@@ -57,6 +57,8 @@ public class UnitAI : MonoBehaviour
                 }
             }
         }
+        
+        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
     }
 
     public void OnAttackAnimationEnd()
