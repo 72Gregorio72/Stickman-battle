@@ -9,19 +9,26 @@ public class UnitAI : MonoBehaviour
     public GameObject attackPrefab;
     public float speed;
     public float attackSpeed;
-    public float attackRange;
+    public float attackRangeX;
+    public float attackRangeY;
     private float timer = 0;
-
+    int animationTimer = 0;
     public String target;
 
     public int direction;
-    public float offset;
+    public float offsetX;
+    public float offsetY;
     public int id;
+
+    private Animator anim;
+
+    //public float animationTime;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,9 +37,10 @@ public class UnitAI : MonoBehaviour
         rb.velocity = new Vector2(speed * direction, 0);
         
         //Range
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position + new Vector3(offset, 0, 0), attackRange);
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position + new Vector3(offsetX, offsetY, 0), new Vector2(attackRangeX, attackRangeY), 0);
 
         timer += Time.deltaTime;
+
         if(timer >= 0.1){
             attackPrefab.SetActive(false);
         }
@@ -42,20 +50,26 @@ public class UnitAI : MonoBehaviour
             if (hitCollider.CompareTag(target))
             {
                 rb.velocity = new Vector2(0, 0);
-                
-                
+
                 if(timer >= attackSpeed){
-                    attackPrefab.SetActive(true);
+                    anim.SetTrigger("Attacking");
                     timer = 0;
-                    attackPrefab.GetComponent<AttackEnemy>().attacked = false;
                 }
-                
             }
         }
     }
+
+    public void OnAttackAnimationEnd()
+    {
+        attackPrefab.SetActive(true);
+        attackPrefab.GetComponent<AttackEnemy>().attacked = false;
+        anim.SetTrigger("FinishedAttack");
+        timer=0;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(offset, 0, 0), attackRange);
+        Gizmos.DrawWireCube(transform.position + new Vector3(offsetX, offsetY, 0), new Vector3(attackRangeX, attackRangeY, 0));
     }
 }

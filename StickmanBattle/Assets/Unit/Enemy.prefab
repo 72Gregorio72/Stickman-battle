@@ -44,12 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bba88ac03ff7a4ca0e591d963f3dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAttackRange: 0.5
+  AttackRangeX: 1
+  AttackRangeY: 1
   attacked: 0
   target: Unit
   damage: 30
   direction: -1
-  AttackDistance: 1
+  offsetX: 0.53
+  offsetY: 0
 --- !u!1 &6925070347035754092
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +149,7 @@ GameObject:
   - component: {fileID: 6010538869814588507}
   - component: {fileID: 2139400944065318932}
   - component: {fileID: 8292751571987000961}
+  - component: {fileID: 5182206110826588537}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -186,10 +189,12 @@ MonoBehaviour:
   attackPrefab: {fileID: 6074809309019219730}
   speed: 5
   attackSpeed: 2
-  attackRange: 0.5
+  attackRangeX: 1
+  attackRangeY: 1
   target: Unit
   direction: -1
-  offset: -0.8
+  offsetX: -1
+  offsetY: -0.04
   id: 0
 --- !u!50 &6010538869814588507
 Rigidbody2D:
@@ -276,3 +281,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!95 &5182206110826588537
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8479517369233983836}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
